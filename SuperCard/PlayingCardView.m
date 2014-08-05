@@ -137,8 +137,7 @@
 #define PIP_VOFFSET2_PERCENTAGE 0.175
 #define PIP_VOFFSET3_PERCENTAGE 0.270
 
-- (void)drawPips
-{
+- (void)drawPips {
     if ((self.rank == 1) || (self.rank == 5) || (self.rank == 9) || (self.rank == 3)) {
         [self drawPipsWithHorizontalOffset:0
                             verticalOffset:0
@@ -166,13 +165,11 @@
     }
 }
 
-- (void)drawPipsWithHorizontalOffset:(CGFloat)hoffset
-                      verticalOffset:(CGFloat)voffset
-                  mirroredVertically:(BOOL)mirroredVertically
-{
+- (void)drawPipsWithHorizontalOffset:(CGFloat)hoffset verticalOffset:(CGFloat)voffset mirroredVertically:(BOOL)mirroredVertically {
     [self drawPipsWithHorizontalOffset:hoffset
                         verticalOffset:voffset
                             upsideDown:NO];
+
     if (mirroredVertically) {
         [self drawPipsWithHorizontalOffset:hoffset
                             verticalOffset:voffset
@@ -182,11 +179,9 @@
 
 #define PIP_FONT_SCALE_FACTOR 0.012
 
-- (void)drawPipsWithHorizontalOffset:(CGFloat)hoffset
-                      verticalOffset:(CGFloat)voffset
-                          upsideDown:(BOOL)upsideDown
-{
+- (void)drawPipsWithHorizontalOffset:(CGFloat)hoffset verticalOffset:(CGFloat)voffset upsideDown:(BOOL)upsideDown {
     if (upsideDown) [self pushContextAndRotateUpsideDown];
+
     CGPoint middle = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
     UIFont *pipFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     pipFont = [pipFont fontWithSize:[pipFont pointSize] * self.bounds.size.width * PIP_FONT_SCALE_FACTOR];
@@ -201,6 +196,7 @@
         pipOrigin.x += hoffset*2.0*self.bounds.size.width;
         [attributedSuit drawAtPoint:pipOrigin];
     }
+
     if (upsideDown) [self popContext];
 }
 
@@ -219,7 +215,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        [self setup];
     }
     return self;
 }
